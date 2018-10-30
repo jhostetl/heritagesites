@@ -1,0 +1,94 @@
+{% extends 'heritagesites/base.html' %}
+
+{% block title %}
+  {{countries.country_area_name | safe}}
+{% endblock title %}
+
+{% block content %}
+
+<!-- safe filter on for raw HTML stored in database -->
+
+<h2>{{countries.country_area_name | safe}}</h2>
+
+{% if countries.description %}
+  <div class="row">
+    <div class="col-sm-3">
+      <p>Description</p>
+    </div>
+    <div class="col-sm-9">
+      {{site.description | safe}}
+    </div>
+  </div>
+{% endif %}
+
+{% if site.date_inscribed %}
+  <div class="row">
+    <div class="col-sm-3">
+      <p>Date inscribed</p>
+    </div>
+    <div class="col-sm-9">
+      {{site.date_inscribed}}
+    </div>
+  </div>
+{% endif %}
+
+{% if site.latitude and site.longitude %}
+  <div class="row">
+    <div class="col-sm-3">
+      <p>Geo coordinates</p>
+    </div>
+    <div class="col-sm-9">
+      {{site.latitude}}, {{site.longitude}} (<span style="font-style:italic">lat</span>.,
+      <span style="font-style:italic">long</span>.)
+    </div>
+  </div>
+{% endif %}
+
+{% if site.area_hectares %}
+  <div class="row">
+    <div class="col-sm-3">
+      <p>Size</p>
+    </div>
+    <div class="col-sm-9">
+      {{site.area_hectares}} hectares
+    </div>
+  </div>
+{% endif %}
+
+{% if site.justification %}
+  <div class="row">
+    <div class="col-sm-3">
+      <p>Justification</p>
+    </div>
+    <div class="col-sm-9">
+      {{site.justification | safe}}
+    </div>
+  </div>
+{% endif %}
+
+{% if site.heritage_site_category %}
+  <div class="row">
+    <div class="col-sm-3">
+      <p>Category</p>
+    </div>
+    <div class="col-sm-9">
+      {{site.heritage_site_category}}
+    </div>
+  </div>
+{% endif %}
+
+{% if site.transboundary %}
+  <div class="row">
+    <div class="col-sm-3">
+      <p>Transboundary</p>
+    </div>
+    <div class="col-sm-9">
+      {{ "Yes" }}
+    </div>
+  </div>
+{% endif %}
+
+{{ site.category_name }}
+
+
+{% endblock content %}}
