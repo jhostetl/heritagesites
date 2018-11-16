@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
+from django_filters.views import FilterView
 from .models import HeritageSite
 from .models import HeritageSiteJurisdiction
 from .models import CountryArea
@@ -9,10 +10,16 @@ from django.utils.decorators import method_decorator
 from .forms import HeritageSiteForm
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
+from heritagesites.filters import HeritageSiteFilter
 
 
 def index(request):
 	return HttpResponse("Hello, world. You're at the UNESCO Heritage Sites index page.")
+
+
+class SiteFilterView(FilterView):
+	filterset_class = HeritageSiteFilter
+	template_name = 'heritagesites/site_filter.html'
 
 
 @method_decorator(login_required, name='dispatch')
