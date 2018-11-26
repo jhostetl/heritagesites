@@ -51,7 +51,7 @@ class CountryArea(models.Model):
     m49_code = models.SmallIntegerField()
     iso_alpha3_code = models.CharField(max_length=3)
     location = models.ForeignKey('Location', on_delete=models.PROTECT)
-    dev_status = models.ForeignKey('DevStatus', models.DO_NOTHING, blank=True, null=True)
+    dev_status = models.ForeignKey('DevStatus', models.PROTECT, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -314,8 +314,8 @@ class HeritageSiteCategory(models.Model):
 
 class HeritageSiteJurisdiction(models.Model):
     heritage_site_jurisdiction_id = models.AutoField(primary_key=True)
-    heritage_site = models.ForeignKey(HeritageSite, models.DO_NOTHING)
-    country_area = models.ForeignKey(CountryArea, models.DO_NOTHING)
+    heritage_site = models.ForeignKey(HeritageSite, on_delete=models.CASCADE)
+    country_area = models.ForeignKey(CountryArea, on_delete=models.CASCADE)
 
     class Meta:
         managed = False
